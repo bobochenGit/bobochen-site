@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobochen | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="logo">BOBOCHEN</div>
+        <div class="nav-links">
+            <a href="#about">關於我</a>
+            <a href="#gallery">圖片作品</a>
+            <a href="#videos">影片展示</a>
+        </div>
+    </nav>
+
+    <!-- 主視覺區 / 關於我 -->
+    <header id="about" class="hero-section">
+        <div class="hero-content">
+            <!-- 個人頭貼：請在 images 資料夾放一張 avatar.jpg -->
+            <img src="images/avatar.jpg" alt="Bobochen" class="avatar">
+            <h1>Hi, 我是 Bobochen</h1>
+            <p class="subtitle">歡迎來到 my-website！這裡展示了我的個人作品與近況。</p>
+            <p class="description">
+                專注於技術開發與創意實踐。這裡是一個乾淨、流暢的空間，用來記錄與分享我的專案。
+            </p>
+        </div>
+    </header>
+
+    <!-- 圖片作品區 (兩欄式排版，乾淨對齊) -->
+    <section id="gallery" class="content-section">
+        <h2 class="section-title">圖片作品</h2>
+        <div class="grid-container">
+            
+            <!-- 圖片卡片 1 -->
+            <div class="card">
+                <div class="media-wrapper">
+                    <!-- 請在 images 資料夾放 project1.jpg -->
+                    <img src="images/project1.jpg" alt="作品 1">
+                </div>
+                <div class="card-info">
+                    <h3>專案名稱 01</h3>
+                    <p>簡單描述這個作品的亮點、使用的技術或是創作概念。</p>
+                </div>
+            </div>
+
+            <!-- 圖片卡片 2 -->
+            <div class="card">
+                <div class="media-wrapper">
+                    <!-- 請在 images 資料夾放 project2.jpg -->
+                    <img src="images/project2.jpg" alt="作品 2">
+                </div>
+                <div class="card-info">
+                    <h3>專案名稱 02</h3>
+                    <p>另一個作品的成果展示，點擊或縮放視窗時會自動適應大小。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 影片作品區 (單欄式大畫面排版，左鍵點擊直接播) -->
+    <section id="videos" class="content-section site-bg-alt">
+        <h2 class="section-title">影片展示</h2>
+        <div class="video-container">
+            
+            <!-- 影片項目 1 -->
+            <div class="video-card">
+                <h3>動態展示 ── 核心功能演練</h3>
+                <p class="video-desc">下方影片支援點擊直接播放，無須跳轉頁面。</p>
+                <div class="video-wrapper">
+                    <!-- 請在 videos 資料夾放 demo1.mp4 -->
+                    <!-- controls 讓網頁出現播放按鈕，playsinline 確保手機上點擊不會強迫全螢幕跳轉 -->
+                    <video controls playsinline>
+                        <source src="videos/demo1.mp4" type="video/mp4">
+                        您的瀏覽器不支援此影片播放。
+                    </video>
+                </div>
+            </div>
+
+            <!-- 影片項目 2 -->
+            <div class="video-card">
+                <h3>次要系統 / 介面展示</h3>
+                <p class="video-desc">第二個影片範例，同樣維持高畫質且不跳轉的內嵌設計。</p>
+                <div class="video-wrapper">
+                    <!-- 請在 videos 資料夾放 demo2.mp4 -->
+                    <video controls playsinline>
+                        <source src="videos/demo2.mp4" type="video/mp4">
+                        您的瀏覽器不支援此影片播放。
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <p>© 2026 Bobochen. Built with Passion.</p>
+    </footer>
+
+</body>
+</html>
