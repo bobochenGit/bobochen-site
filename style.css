@@ -627,3 +627,138 @@ body {
         gap: 3rem;
     }
 }
+
+/* ==========================================================================
+   Games Section (小遊戲區)
+   ========================================================================== */
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+.game-card {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(0, 245, 212, 0.05));
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+}
+
+.game-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(
+        300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(157, 78, 221, 0.5),
+        transparent 50%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.game-card:hover:not(.coming-soon)::before {
+    opacity: 1;
+}
+
+.game-card:hover:not(.coming-soon) {
+    transform: translateY(-10px);
+    border-color: var(--card-border-hover);
+    box-shadow: 0 25px 50px rgba(157, 78, 221, 0.2);
+}
+
+.game-card.coming-soon {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.game-header-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.game-header-card p {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.game-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+}
+
+.feature-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(157, 78, 221, 0.2);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    font-weight: 500;
+}
+
+.btn-game {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+}
+
+.btn-game:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--accent-purple-glow);
+}
+
+.btn-game:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-game:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .games-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .game-card {
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+}
