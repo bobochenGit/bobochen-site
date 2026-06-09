@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>踩地雷遊戲 | Bobochen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+    <!-- 背景流光效果 -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- 返回首頁按鈕 -->
+    <a href="../../index.html" class="back-btn">← 返回首頁</a>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <header class="game-header reveal">
+            <h1>💣 踩地雷遊戲</h1>
+            <p>試試你的運氣和邏輯能力！</p>
+        </header>
+
+        <!-- 遊戲控制面板 -->
+        <div class="control-panel reveal delay-100">
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">難度</span>
+                    <select id="difficulty" class="difficulty-select">
+                        <option value="easy">簡單 (8x8, 10地雷)</option>
+                        <option value="medium" selected>中等 (12x12, 30地雷)</option>
+                        <option value="hard">困難 (16x16, 60地雷)</option>
+                    </select>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">⏱️ 時間</span>
+                    <span id="timer" class="timer">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">💣 地雷</span>
+                    <span id="mines-left" class="mines-left">30</span>
+                </div>
+            </div>
+            <button id="new-game-btn" class="btn btn-primary">🎮 新遊戲</button>
+        </div>
+
+        <!-- 遊戲狀態 -->
+        <div id="game-status" class="game-status"></div>
+
+        <!-- 遊戲板 -->
+        <div id="game-board" class="game-board"></div>
+
+        <!-- 說明區域 -->
+        <div class="instructions reveal delay-200">
+            <h3>📖 遊戲說明</h3>
+            <ul>
+                <li><strong>左鍵點擊</strong>：翻開格子</li>
+                <li><strong>右鍵點擊</strong>：標記 / 取消標記地雷</li>
+                <li><strong>目標</strong>：翻開所有安全格子，標記所有地雷</li>
+                <li><strong>技巧</strong>：數字代表周圍地雷數量</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 引入全局腳本（自訂游標效果） -->
+    <script src="../../script.js"></script>
+    <!-- 引入遊戲腳本 -->
+    <script src="script.js"></script>
+</body>
+</html>

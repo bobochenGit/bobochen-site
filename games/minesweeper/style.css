@@ -1,0 +1,470 @@
+/* 踩地雷遊戲樣式 */
+
+/* 使用全域主題色 */
+:root {
+    --bg: #07070a;
+    --bg-alt: #0d0c12;
+    --accent-purple: #9d4edd;
+    --accent-purple-glow: rgba(157, 78, 221, 0.4);
+    --accent-pink: #ff007f;
+    --accent-pink-glow: rgba(255, 0, 127, 0.4);
+    --accent-cyan: #00f5d4;
+    --accent-cyan-glow: rgba(0, 245, 212, 0.3);
+    --card-bg: rgba(20, 18, 28, 0.7);
+    --card-border: rgba(157, 78, 221, 0.15);
+    --card-border-hover: rgba(157, 78, 221, 0.45);
+    --text-main: #f3f4f6;
+    --text-sub: #9ca3af;
+    --text-muted: #6b7280;
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+@media (pointer: fine) {
+    body, .cell, button, select, a {
+        cursor: none;
+    }
+}
+
+/* 背景效果 */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.22;
+    z-index: -1;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.blob-1 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+    top: -10%;
+    left: -5%;
+}
+
+.blob-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+    top: 30%;
+    right: -5%;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-pink) 0%, transparent 70%);
+    bottom: -10%;
+    left: 20%;
+}
+
+/* Reveal 動畫 */
+.reveal {
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 返回按鈕 */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(157, 78, 221, 0.2);
+    border: 1px solid var(--card-border-hover);
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.back-btn:hover {
+    background: rgba(157, 78, 221, 0.4);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+}
+
+/* 主容器 */
+.container {
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+}
+
+/* 遊戲標題 */
+.game-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-header h1 {
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.game-header p {
+    font-size: 1.1rem;
+    color: var(--text-sub);
+}
+
+/* 控制面板 */
+.control-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.timer,
+.mines-left {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    font-family: 'Courier New', monospace;
+}
+
+.difficulty-select {
+    padding: 8px 12px;
+    background: rgba(157, 78, 221, 0.1);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.difficulty-select:hover,
+.difficulty-select:focus {
+    border-color: var(--accent-purple);
+    background: rgba(157, 78, 221, 0.2);
+    outline: none;
+}
+
+/* 按鈕 */
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    color: white;
+    box-shadow: 0 0 20px var(--accent-purple-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--accent-purple-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* 遊戲狀態 */
+.game-status {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    min-height: 30px;
+    color: var(--accent-cyan);
+}
+
+.game-status.win {
+    color: #10b981;
+    animation: pulse 0.5s ease-in-out;
+}
+
+.game-status.loss {
+    color: var(--accent-pink);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* 遊戲板 */
+.game-board {
+    display: inline-grid;
+    gap: 2px;
+    padding: 15px;
+    background: rgba(157, 78, 221, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    margin: 0 auto 30px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-board.easy {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.game-board.medium {
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.game-board.hard {
+    grid-template-columns: repeat(16, 1fr);
+}
+
+/* 格子 */
+.cell {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(0, 245, 212, 0.1));
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    font-family: 'Courier New', monospace;
+}
+
+.cell:hover:not(.revealed):not(.flagged) {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.5), rgba(0, 245, 212, 0.3));
+    border-color: var(--accent-purple);
+}
+
+/* 已翻開的格子 */
+.cell.revealed {
+    background: rgba(20, 18, 28, 0.5);
+    border-color: rgba(157, 78, 221, 0.3);
+    cursor: default;
+}
+
+.cell.revealed.zero {
+    color: var(--text-muted);
+}
+
+.cell.revealed.one { color: #3b82f6; }
+.cell.revealed.two { color: #10b981; }
+.cell.revealed.three { color: var(--accent-pink); }
+.cell.revealed.four { color: #8b5cf6; }
+.cell.revealed.five { color: var(--accent-pink); }
+.cell.revealed.six { color: var(--accent-cyan); }
+.cell.revealed.seven { color: #000; }
+.cell.revealed.eight { color: #6b7280; }
+
+/* 地雷 */
+.cell.mine {
+    background: linear-gradient(135deg, rgba(255, 0, 127, 0.8), rgba(255, 0, 127, 0.4));
+    color: #fbbf24;
+    font-size: 1rem;
+}
+
+/* 旗子標記 */
+.cell.flagged {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.5), rgba(251, 191, 36, 0.2));
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
+
+.cell.flagged::after {
+    content: '🚩';
+}
+
+/* 說明區域 */
+.instructions {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+}
+
+.instructions h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-cyan);
+}
+
+.instructions ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.instructions li {
+    font-size: 0.95rem;
+    color: var(--text-sub);
+    line-height: 1.6;
+}
+
+.instructions strong {
+    color: var(--text-main);
+}
+
+/* RWD 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 80px;
+    }
+
+    .game-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .control-panel {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .stats {
+        width: 100%;
+        justify-content: space-around;
+        gap: 15px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .game-board.medium {
+        grid-template-columns: repeat(10, 1fr);
+    }
+
+    .game-board.hard {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    .back-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .back-btn {
+        top: 10px;
+        left: 10px;
+    }
+
+    .container {
+        margin-top: 60px;
+    }
+
+    .game-board.easy {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .game-board.medium {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .game-board.hard {
+        grid-template-columns: repeat(10, 1fr);
+    }
+
+    .stat-item {
+        gap: 4px;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .timer,
+    .mines-left {
+        font-size: 1.2rem;
+    }
+}
