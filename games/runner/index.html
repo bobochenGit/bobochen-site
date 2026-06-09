@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔導貓跑酷 | Bobochen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <a href="../../index.html" class="back-btn">← 返回首頁</a>
+
+    <div class="runner-page">
+        <header class="runner-header reveal">
+            <h1>🏃‍♀️ 紫晶魔導貓跑酷</h1>
+            <p>在星空魔法大道上躲避障礙，越跑越快，挑戰高分！</p>
+        </header>
+
+        <div class="runner-panel reveal delay-100">
+            <div class="panel-item">
+                <span class="panel-label">得分</span>
+                <span id="score" class="panel-value">0</span>
+            </div>
+            <div class="panel-actions">
+                <button id="start-btn" class="btn btn-primary">按 Space 開始 / 跳躍</button>
+                <button id="leaderboard-btn" class="btn btn-secondary">🏆 排行榜</button>
+            </div>
+        </div>
+
+        <div id="game-status" class="game-status"></div>
+
+        <div class="game-stage reveal delay-200">
+            <div class="sky-layer"></div>
+            <div class="stars-layer"></div>
+            <div class="cloud-layer"></div>
+            <div class="race-path"></div>
+            <div id="player" class="player"></div>
+            <div id="obstacle-layer" class="obstacle-layer"></div>
+        </div>
+
+        <div class="instructions reveal delay-300">
+            <h3>操作說明</h3>
+            <ul>
+                <li>按下 <strong>Space</strong> 開始遊戲</li>
+                <li>遊戲中按 <strong>Space</strong> 跳躍</li>
+                <li>按下 <strong>ArrowDown</strong> 或 <strong>S</strong> 趴下</li>
+                <li>躲避前方的障礙物，越久得分越高</li>
+                <li>死亡後可按 Space 重新開始</li>
+            </ul>
+        </div>
+
+        <!-- 紀錄高分名字輸入彈窗 -->
+        <div id="name-modal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>🏆 榮登魔導殿堂！</h3>
+                <p>你獲得了 <span id="modal-score-val">0</span> 分，進入了排行榜！</p>
+                <p class="modal-tip">請留下你的魔導士大名：</p>
+                <input type="text" id="player-name-input" maxlength="10" placeholder="您的名字..." value="神秘魔導士">
+                <div class="modal-buttons">
+                    <button id="submit-score-btn" class="btn btn-primary">送出紀錄</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 排行榜視窗 -->
+        <div id="leaderboard-modal" class="modal-overlay">
+            <div class="modal-content leaderboard-content">
+                <div class="modal-header">
+                    <h2>🏆 魔導殿堂排行榜</h2>
+                    <button id="close-leaderboard-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="leaderboard-tabs">
+                    <button id="tab-local" class="tab-btn active">本地排行</button>
+                    <button id="tab-global" class="tab-btn">全球排行</button>
+                </div>
+                <div class="leaderboard-table-container">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>名次</th>
+                                <th>魔導士</th>
+                                <th>得分</th>
+                                <th>日期</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-rows">
+                            <!-- 動態生成排行資料 -->
+                        </tbody>
+                    </table>
+                    <div id="leaderboard-loading" class="leaderboard-loading">載入中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
